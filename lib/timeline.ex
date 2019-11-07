@@ -3,13 +3,11 @@ defmodule Timeline do
   Documentation for Timeline.
   """
 
-  @resources ~w(entries projects)
-
-  # alias Timeline.{Entries, Projects}
   import Support
+  @resources get_resources()
 
   def main([]) do
-    display_main_help()
+    display_help_for(:main)
   end
 
   def main(args) do
@@ -22,19 +20,11 @@ defmodule Timeline do
   end
 
   defp dispatch_resource(resource, args) when resource in @resources do
-    resource = "#{__MODULE__}.#{String.capitalize(resource)}"
+    resource = "#{__MODULE__}." <> String.capitalize(resource)
     String.to_atom(resource).run(args)
   end
 
-  # defp dispatch_resource("entries", args) do
-  #   Entries.run(args)
-  # end
-
-  # defp dispatch_resource("projects", args) do
-  #   Projects.run(args)
-  # end
-
   defp dispatch_resource(_, _) do
-    display_main_help()
+    display_help_for(:main)
   end
 end
