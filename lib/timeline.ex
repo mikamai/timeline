@@ -3,12 +3,13 @@ defmodule Timeline do
   Documentation for Timeline.
   """
 
-  @help Application.get_env(:timeline, :main_help)
+  @resources ~w(entries projects)
 
-  alias Timeline.{Entries, Projects}
+  # alias Timeline.{Entries, Projects}
+  import Support
 
   def main([]) do
-    display_help()
+    display_main_help()
   end
 
   def main(args) do
@@ -16,24 +17,24 @@ defmodule Timeline do
     dispatch_resource(resource, args)
   end
 
-  defp dispatch_resource(resource, []) do
+  defp dispatch_resource(resource, []) when resource in @resources do
+    display_help_for(resource)
+  end
+
+  defp dispatch_resource(resource, args) when resource in @resources do
     resource = "#{__MODULE__}.#{String.capitalize(resource)}"
-    String.to_atom(resource).display_help()
+    String.to_atom(resource).run(args)
   end
 
-  defp dispatch_resource("entries", args) do
-    Entries.run(args)
-  end
+  # defp dispatch_resource("entries", args) do
+  #   Entries.run(args)
+  # end
 
-  defp dispatch_resource("projects", args) do
-    Projects.run(args)
-  end
+  # defp dispatch_resource("projects", args) do
+  #   Projects.run(args)
+  # end
 
   defp dispatch_resource(_, _) do
-    display_help()
-  end
-
-  defp display_help do
-    IO.write(@help)
+    display_main_help()
   end
 end

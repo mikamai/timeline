@@ -1,11 +1,10 @@
 defmodule Timeline.Projects do
-  @help Application.get_env(:timeline, :projects_help)
+  @moduledoc """
+  Documentation for Projects.
+  """
 
-  alias Timeline.Projects.{List, Alias}
-
-  def display_help do
-    IO.write(@help)
-  end
+  alias Timeline.Projects.{Alias, List}
+  import Support, only: [display_help_for: 1]
 
   def run(args) do
     [action | args] = args
@@ -21,6 +20,6 @@ defmodule Timeline.Projects do
   end
 
   defp dispatch_action(_, _) do
-    display_help()
+    display_help_for("projects")
   end
 end

@@ -1,11 +1,10 @@
 defmodule Timeline.Entries do
-  @help Application.get_env(:timeline, :entries_help)
+  @moduledoc """
+  Documentation for Entries.
+  """
 
   alias Timeline.Entries.{Add, List}
-
-  def display_help do
-    IO.write(@help)
-  end
+  import Support, only: [display_help_for: 1]
 
   def run(args) do
     [action | args] = args
@@ -21,6 +20,6 @@ defmodule Timeline.Entries do
   end
 
   defp dispatch_action(_, _) do
-    display_help()
+    display_help_for("entries")
   end
 end
