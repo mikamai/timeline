@@ -1,4 +1,4 @@
-defmodule Support do
+defmodule TimelineLib.Support do
   @resources ~w(entries projects)
 
   def get_resources, do: @resources
