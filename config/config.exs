@@ -20,4 +20,9 @@ config :timeline,
 config :timeline,
   projects_help: """
   Usage: timeline projects ACTION [OPTIONS]
+  Help:  timeline projects ACTION [-h | --help]
+
+  ACTIONS | OPTIONS     | DESCRIPTION
+  --------+-------------+----------------------------
+  list    | -t, --tasks | display the project's tasks
   """

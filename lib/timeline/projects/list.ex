@@ -1,20 +1,48 @@
 defmodule Timeline.Projects.List do
+  @moduledoc """
+  Documentation for Timeline.Projects.List.
+  """
+
+  import Support, only: [display_help_for: 1]
+
   def run(args) do
-    parse_args(args)
+    args
+    |> parse_args()
+    |> process()
   end
 
   def parse_args(args) do
     parsed =
       OptionParser.parse(
         args,
-        aliases: [
-          p: :project
-        ],
-        strict: [
-          project: :integer
-        ]
+        aliases: [t: :tasks, h: :help],
+        strict: [tasks: :boolean, help: :boolean]
       )
 
-    IO.inspect(parsed)
+    case parsed do
+      {[help: true], _, _} ->
+        :help
+
+      {[tasks: true], [], []} ->
+        :tasks
+
+      {[], [], []} ->
+        :list
+
+      _ ->
+        :help
+    end
+  end
+
+  def process(:tasks) do
+    IO.puts("Finreach#tasks\nGabetti#tasks")
+  end
+
+  def process(:list) do
+    IO.puts("Finreach\nGabetti")
+  end
+
+  def process(_) do
+    display_help_for("projects")
   end
 end
