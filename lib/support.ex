@@ -1,7 +1,9 @@
-defmodule TimelineLib.Support do
+defmodule Support do
   @resources ~w(entries projects)
 
-  def get_resources, do: @resources
+  def get_resources do
+    @resources
+  end
 
   def display_help_for(resource) when resource in @resources do
     resource_help = resource <> "_help"

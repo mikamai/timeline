@@ -4,7 +4,7 @@ defmodule Timeline.Entries do
   """
 
   alias Timeline.Entries.{Add, List}
-  import TimelineLib.Support, only: [display_help_for: 1]
+  import Support, only: [display_help_for: 1]
 
   def run(args) do
     [action | args] = args

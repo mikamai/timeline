@@ -3,7 +3,7 @@ defmodule Timeline.Projects.List do
   Documentation for Timeline.Projects.List.
   """
 
-  import TimelineLib.Support, only: [display_help_for: 1]
+  import Support, only: [display_help_for: 1]
 
   def run(args) do
     args

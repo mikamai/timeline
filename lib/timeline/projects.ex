@@ -4,7 +4,7 @@ defmodule Timeline.Projects do
   """
 
   alias Timeline.Projects.{Alias, List}
-  import TimelineLib.Support, only: [display_help_for: 1]
+  import Support, only: [display_help_for: 1]
 
   def run(args) do
     [action | args] = args
