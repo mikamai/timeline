@@ -1,6 +1,9 @@
 use Mix.Config
 
 config :timeline,
+  base_url: "https://bd1da57d-487f-474a-b53e-0161e0a2d52b.mock.pstmn.io/api/v1"
+
+config :timeline,
   main_help: """
   Usage: timeline RESOURCE ACTION [OPTIONS]
   Help:  timeline RESOURCE

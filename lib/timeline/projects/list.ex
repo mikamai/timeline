@@ -5,6 +5,11 @@ defmodule Timeline.Projects.List do
 
   import Support, only: [display_help_for: 1]
 
+  @options [
+    aliases: [t: :tasks, h: :help],
+    strict: [tasks: :boolean, help: :boolean]
+  ]
+
   def run(args) do
     args
     |> parse_args()
@@ -12,12 +17,7 @@ defmodule Timeline.Projects.List do
   end
 
   def parse_args(args) do
-    parsed =
-      OptionParser.parse(
-        args,
-        aliases: [t: :tasks, h: :help],
-        strict: [tasks: :boolean, help: :boolean]
-      )
+    parsed = OptionParser.parse(args, @options)
 
     case parsed do
       {[help: true], _, _} ->
