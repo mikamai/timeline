@@ -3,8 +3,6 @@ defmodule Timeline.Projects.List do
   Documentation for Timeline.Projects.List.
   """
 
-  import Support, only: [display_help_for: 1]
-
   @options [
     aliases: [t: :tasks, h: :help],
     strict: [tasks: :boolean, help: :boolean]
@@ -35,14 +33,38 @@ defmodule Timeline.Projects.List do
   end
 
   def process(:tasks) do
-    IO.puts("Finreach#tasks\nGabetti#tasks")
+    TimetableApi.get("mikamai", "projects")
+    |> decode_response(:tasks)
   end
 
   def process(:list) do
-    IO.puts("Finreach\nGabetti")
+    TimetableApi.get("mikamai", "projects")
+    |> decode_response()
+    # |> print_table_for_columns(@headers)
   end
 
   def process(_) do
-    display_help_for("projects")
+    Support.display_help_for("projects")
+  end
+
+  def decode_response(response, option \\ nil)
+
+  def decode_response({:ok, projects}, :tasks) do
+    Enum.map(
+      projects,
+      &{String.to_atom(&1.name), for(task <- &1.tasks, do: task.name)}
+    )
+  end
+
+  def decode_response({:ok, projects}, _) do
+    Enum.map(
+      projects,
+      &(&1.name)
+    )
+    |> Enum.join("\n")
+  end
+
+  def decode_response({:error, details}, _) do
+    IO.puts("error while fetching: `#{details}`")
   end
 end

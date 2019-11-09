@@ -3,10 +3,12 @@ defmodule TimetableApi do
   Handles the request to the API.
   """
 
+  require Logger
+
   @base_url Application.get_env(:timeline, :base_url)
 
   def get(orgs, resource) do
-    # Logger.info("fetching user's #{resource} for #{orgs}'s organization")
+    Logger.info("fetching some #{orgs}'s #{resource}")
 
     url(orgs, resource)
     |> HTTPoison.get()
@@ -18,20 +20,20 @@ defmodule TimetableApi do
   end
 
   def handle_response({:ok, %{body: body}}) do
-    # Logger.info("successful response")
-    # Logger.debug(fn -> inspect(body) end)
+    Logger.info("successful response")
+    Logger.debug(fn -> inspect(body) end)
 
     case Jason.decode(body, keys: :atoms) do
       {:ok, body} ->
-        {:ok, body}
+        {:ok, body.data}
 
       {:error, details} ->
-        {:error, "Jason failed to compile `#{details.data}`"}
+        {:error, "jason failed to compile `#{details.data}`"}
     end
   end
 
   def handle_response({:error, %{reason: details}}) do
-    # Logger.error("error #{details} returned")
+    Logger.error("error `#{details}` returned")
     {:error, details}
   end
 end
