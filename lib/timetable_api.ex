@@ -19,9 +19,9 @@ defmodule TimetableApi do
     "#{@base_url}/orgs/#{orgs}/users/me/#{resource}"
   end
 
-  def handle_response({:ok, %{body: body}}) do
+  defp handle_response({:ok, %{body: body}}) do
     Logger.info("successful response")
-    Logger.debug(fn -> inspect(body) end)
+    # Logger.debug(fn -> inspect(body) end)
 
     case Jason.decode(body, keys: :atoms) do
       {:ok, body} ->
@@ -32,7 +32,7 @@ defmodule TimetableApi do
     end
   end
 
-  def handle_response({:error, %{reason: details}}) do
+  defp handle_response({:error, %{reason: details}}) do
     Logger.error("error `#{details}` returned")
     {:error, details}
   end

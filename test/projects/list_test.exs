@@ -6,8 +6,8 @@ defmodule Projects.ListTest do
 
   describe "list action without options" do
     @fixture """
-    Finreach
-    Gabetti
+    cdl-praticanti
+    revest
     """
 
     @cmd ~w(projects list)
@@ -18,8 +18,8 @@ defmodule Projects.ListTest do
 
   describe "list action with tasks" do
     @fixture """
-    Finreach#tasks
-    Gabetti#tasks
+    cdl-praticanti#programming#review#prep#conference
+    revest#programming#review
     """
 
     @cmd ~w(projects list --tasks)

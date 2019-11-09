@@ -35,11 +35,14 @@ defmodule Timeline.Projects.List do
   def process(:tasks) do
     TimetableApi.get("mikamai", "projects")
     |> decode_response(:tasks)
+    |> IO.puts()
   end
 
   def process(:list) do
     TimetableApi.get("mikamai", "projects")
     |> decode_response()
+    |> IO.puts()
+
     # |> print_table_for_columns(@headers)
   end
 
@@ -47,24 +50,28 @@ defmodule Timeline.Projects.List do
     Support.display_help_for("projects")
   end
 
-  def decode_response(response, option \\ nil)
+  defp decode_response(response, option \\ nil)
 
-  def decode_response({:ok, projects}, :tasks) do
+  defp decode_response({:ok, projects}, :tasks) do
     Enum.map(
       projects,
-      &{String.to_atom(&1.name), for(task <- &1.tasks, do: task.name)}
+      &[&1.name, for(task <- &1.tasks, do: task.name)]
+    )
+    |> Enum.map_join(
+      "\n",
+      &("#{List.first(&1)}#" <> Enum.join(List.last(&1), "#"))
     )
   end
 
-  def decode_response({:ok, projects}, _) do
+  defp decode_response({:ok, projects}, _) do
     Enum.map(
       projects,
-      &(&1.name)
+      & &1.name
     )
     |> Enum.join("\n")
   end
 
-  def decode_response({:error, details}, _) do
+  defp decode_response({:error, details}, _) do
     IO.puts("error while fetching: `#{details}`")
   end
 end
