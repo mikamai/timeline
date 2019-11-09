@@ -4,7 +4,6 @@ defmodule Timeline.Entries do
   """
 
   alias Timeline.Entries.{Add, List}
-  import Support, only: [display_help_for: 1]
 
   def run(args) do
     [action | args] = args
@@ -20,6 +19,6 @@ defmodule Timeline.Entries do
   end
 
   defp dispatch_action(_, _) do
-    display_help_for("entries")
+    Support.display_help_for("entries")
   end
 end
