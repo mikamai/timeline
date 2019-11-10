@@ -19,6 +19,6 @@ defmodule Timeline.Projects do
   end
 
   defp dispatch_action(_, _) do
-    Support.display_help_for("projects")
+    Helper.display_help_for("projects")
   end
 end

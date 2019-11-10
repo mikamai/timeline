@@ -3,7 +3,7 @@ defmodule Timeline do
   Documentation for Timeline.
   """
 
-  import Support
+  import Helper
   @resources get_resources()
 
   def main([]) do

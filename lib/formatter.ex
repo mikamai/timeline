@@ -1,6 +1,6 @@
 defmodule Formatter do
   @moduledoc """
-  Handles the drawing of a table that displays the fetched data.
+  Handles the drawing of the output that displays the fetched data.
   """
 
   import Enum, only: [map: 2, map_join: 3]

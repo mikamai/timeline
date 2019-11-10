@@ -19,6 +19,6 @@ defmodule Timeline.Entries do
   end
 
   defp dispatch_action(_, _) do
-    Support.display_help_for("entries")
+    Helper.display_help_for("entries")
   end
 end

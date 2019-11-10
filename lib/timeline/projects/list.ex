@@ -3,8 +3,6 @@ defmodule Timeline.Projects.List do
   Documentation for Timeline.Projects.List.
   """
 
-  import Formatter
-
   @options [
     aliases: [t: :tasks, h: :help],
     strict: [tasks: :boolean, help: :boolean]
@@ -45,17 +43,17 @@ defmodule Timeline.Projects.List do
   end
 
   def process(_) do
-    Support.display_help_for("projects")
+    Helper.display_help_for("projects")
   end
 
   defp decode_response(response, option \\ nil)
 
   defp decode_response({:ok, projects}, :tasks) do
-    list(projects, :tasks)
+    Formatter.list(projects, :tasks)
   end
 
   defp decode_response({:ok, projects}, _) do
-    list(projects)
+    Formatter.list(projects)
   end
 
   defp decode_response({:error, details}, _) do
