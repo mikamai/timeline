@@ -3,6 +3,8 @@ defmodule Timeline.Projects.List do
   Documentation for Timeline.Projects.List.
   """
 
+  import Formatter
+
   @options [
     aliases: [t: :tasks, h: :help],
     strict: [tasks: :boolean, help: :boolean]
@@ -35,15 +37,11 @@ defmodule Timeline.Projects.List do
   def process(:tasks) do
     TimetableApi.get("mikamai", "projects")
     |> decode_response(:tasks)
-    |> IO.puts()
   end
 
   def process(:list) do
     TimetableApi.get("mikamai", "projects")
     |> decode_response()
-    |> IO.puts()
-
-    # |> print_table_for_columns(@headers)
   end
 
   def process(_) do
@@ -53,22 +51,11 @@ defmodule Timeline.Projects.List do
   defp decode_response(response, option \\ nil)
 
   defp decode_response({:ok, projects}, :tasks) do
-    Enum.map(
-      projects,
-      &[&1.name, for(task <- &1.tasks, do: task.name)]
-    )
-    |> Enum.map_join(
-      "\n",
-      &("#{List.first(&1)}#" <> Enum.join(List.last(&1), "#"))
-    )
+    list(projects, :tasks)
   end
 
   defp decode_response({:ok, projects}, _) do
-    Enum.map(
-      projects,
-      & &1.name
-    )
-    |> Enum.join("\n")
+    list(projects)
   end
 
   defp decode_response({:error, details}, _) do

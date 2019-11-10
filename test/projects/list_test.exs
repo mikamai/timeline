@@ -5,31 +5,37 @@ defmodule Projects.ListTest do
   import Timeline, only: [main: 1]
 
   describe "list action without options" do
-    @fixture """
+    @output """
     cdl-praticanti
     revest
     """
 
     @cmd ~w(projects list)
     test "displays projects" do
-      assert capture_io(fn -> main(@cmd) end) == @fixture
+      assert capture_io(fn -> main(@cmd) end) == @output
     end
   end
 
   describe "list action with tasks" do
-    @fixture """
-    cdl-praticanti#programming#review#prep#conference
-    revest#programming#review
+    @output """
+    cdl-praticanti
+      ~ programming
+      ~ review
+      ~ prep
+      ~ conference
+    revest
+      ~ programming
+      ~ review
     """
 
     @cmd ~w(projects list --tasks)
     test "displays projects and tasks" do
-      assert capture_io(fn -> main(@cmd) end) == @fixture
+      assert capture_io(fn -> main(@cmd) end) == @output
     end
 
     @cmd ~w(projects list -t)
     test "displays projects and tasks via shortcut" do
-      assert capture_io(fn -> main(@cmd) end) == @fixture
+      assert capture_io(fn -> main(@cmd) end) == @output
     end
   end
 
