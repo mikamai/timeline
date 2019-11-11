@@ -11,13 +11,13 @@ defmodule Formatter do
     things
     |> projects_with_tasks()
     |> map_join("\n", &format_tasks(&1))
-    |> IO.puts()
+    |> puts()
   end
 
   def list(things, _) do
     things
     |> map_join("\n", & &1.name)
-    |> IO.puts()
+    |> puts()
   end
 
   defp projects_with_tasks(projects) do
@@ -28,6 +28,10 @@ defmodule Formatter do
     [name, tasks] = project
     tab = "\n\s\s~ "
 
-    name <> tab <> Enum.join(tasks, tab)
+    name <> tab <> Enum.join(tasks, tab) <> "\n"
+  end
+
+  defp puts(string) do
+    IO.puts("\n" <> string <> "\n")
   end
 end

@@ -6,8 +6,10 @@ defmodule Projects.ListTest do
 
   describe "list action without options" do
     @output """
+
     cdl-praticanti
     revest
+
     """
 
     @cmd ~w(projects list)
@@ -18,14 +20,17 @@ defmodule Projects.ListTest do
 
   describe "list action with tasks" do
     @output """
+
     cdl-praticanti
       ~ programming
       ~ review
       ~ prep
       ~ conference
+
     revest
       ~ programming
       ~ review
+
     """
 
     @cmd ~w(projects list --tasks)

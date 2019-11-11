@@ -8,7 +8,7 @@ defmodule TimetableApi do
   @base_url Application.get_env(:timeline, :base_url)
 
   def get(orgs, resource) do
-    Logger.info("fetching some #{orgs}'s #{resource}")
+    # Logger.info("fetching some #{orgs}'s #{resource}")
 
     url(orgs, resource)
     |> HTTPoison.get()
@@ -20,7 +20,7 @@ defmodule TimetableApi do
   end
 
   defp handle_response({:ok, %{body: body}}) do
-    Logger.info("successful response")
+    # Logger.info("successful response")
     # Logger.debug(fn -> inspect(body) end)
 
     case Jason.decode(body, keys: :atoms) do
@@ -33,7 +33,7 @@ defmodule TimetableApi do
   end
 
   defp handle_response({:error, %{reason: details}}) do
-    Logger.error("error `#{details}` returned")
+    # Logger.error("error `#{details}` returned")
     {:error, details}
   end
 end

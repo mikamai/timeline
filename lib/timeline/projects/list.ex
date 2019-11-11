@@ -57,6 +57,6 @@ defmodule Timeline.Projects.List do
   end
 
   defp decode_response({:error, details}, _) do
-    IO.puts("error while fetching: `#{details}`")
+    IO.puts("\nerror while fetching: `#{details}`")
   end
 end
