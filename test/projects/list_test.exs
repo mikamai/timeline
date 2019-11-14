@@ -22,14 +22,13 @@ defmodule Projects.ListTest do
     @output """
 
     cdl-praticanti
-      ~ programming
-      ~ review
-      ~ prep
-      ~ conference
-
+      :programming
+      :review
+      :prep
+      :conference
     revest
-      ~ programming
-      ~ review
+      :programming
+      :review
 
     """
 

@@ -26,9 +26,9 @@ defmodule Formatter do
 
   defp format_tasks(project) do
     [name, tasks] = project
-    tab = "\n\s\s~ "
+    tab = "\n\s\s:"
 
-    name <> tab <> Enum.join(tasks, tab) <> "\n"
+    name <> tab <> Enum.join(tasks, tab)
   end
 
   defp puts(string) do
