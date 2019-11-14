@@ -4,8 +4,8 @@ defmodule Timeline.Projects.List do
   """
 
   @options [
-    aliases: [t: :tasks, h: :help],
-    strict: [tasks: :boolean, help: :boolean]
+    aliases: [t: :tasks],
+    strict: [tasks: :boolean]
   ]
 
   def run(args) do
@@ -18,9 +18,6 @@ defmodule Timeline.Projects.List do
     parsed = OptionParser.parse(args, @options)
 
     case parsed do
-      {[help: true], _, _} ->
-        :help
-
       {[tasks: true], [], []} ->
         :tasks
 
