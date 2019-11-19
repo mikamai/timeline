@@ -1,6 +1,6 @@
 defmodule TimetableApi do
   @moduledoc """
-  Handles the request to the API.
+  Handles the requests to the API.
   """
 
   require Logger

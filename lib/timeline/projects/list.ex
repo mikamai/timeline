@@ -8,6 +8,8 @@ defmodule Timeline.Projects.List do
     strict: [tasks: :boolean]
   ]
 
+  @timetable_api Application.get_env(:timeline, :timetable_api)
+
   def run(args) do
     args
     |> parse_args()
@@ -30,12 +32,12 @@ defmodule Timeline.Projects.List do
   end
 
   def process(:tasks) do
-    TimetableApi.get("mikamai", "projects")
+    @timetable_api.get("mikamai", "projects")
     |> decode_response(:tasks)
   end
 
   def process(:list) do
-    TimetableApi.get("mikamai", "projects")
+    @timetable_api.get("mikamai", "projects")
     |> decode_response()
   end
 
