@@ -1,5 +1,7 @@
 use Mix.Config
 
+import_config "#{Mix.env}.exs"
+
 config :timeline,
   base_url: "https://bd1da57d-487f-474a-b53e-0161e0a2d52b.mock.pstmn.io/api/v1"
 
