@@ -1,21 +1,21 @@
 defmodule Formatter do
   @moduledoc """
-  Handles the drawing of the output that displays the fetched data.
+  Handles the output layout of the fetched data.
   """
 
   import Enum, only: [map: 2, map_join: 3]
 
-  def list(things, option \\ nil)
+  def list(data, option \\ nil)
 
-  def list(things, :tasks) do
-    things
+  def list(data, :tasks) do
+    data
     |> projects_with_tasks()
     |> map_join("\n", &format_tasks(&1))
     |> puts()
   end
 
-  def list(things, _) do
-    things
+  def list(data, _) do
+    data
     |> map_join("\n", & &1.name)
     |> puts()
   end
@@ -26,12 +26,12 @@ defmodule Formatter do
 
   defp format_tasks(project) do
     [name, tasks] = project
-    tab = "\n\s\s:"
+    tab = "\n\s\s"
 
     name <> tab <> Enum.join(tasks, tab)
   end
 
   defp puts(string) do
-    IO.puts("\n" <> string <> "\n")
+    IO.puts("\n" <> string)
   end
 end

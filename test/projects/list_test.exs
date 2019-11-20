@@ -9,7 +9,6 @@ defmodule Projects.ListTest do
 
     cdl-praticanti
     revest
-
     """
 
     @cmd ~w(projects list)
@@ -22,14 +21,13 @@ defmodule Projects.ListTest do
     @output """
 
     cdl-praticanti
-      :programming
-      :review
-      :prep
-      :conference
+      programming
+      review
+      prep
+      conference
     revest
-      :programming
-      :review
-
+      programming
+      review
     """
 
     @cmd ~w(projects list --tasks)

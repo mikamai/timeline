@@ -54,7 +54,7 @@ defmodule Timeline.Entries.Add do
       |> Jason.encode()
 
     case encoded do
-      {:ok, body } ->
+      {:ok, body} ->
         body
 
       _ ->
