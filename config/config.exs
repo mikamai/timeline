@@ -22,13 +22,20 @@ config :timeline,
   entries_help: """
 
   Usage: timeline entries ACTION [OPTIONS]
+  Help:  timeline projects ACTION
+
+  ACTIONS | OPTIONS      | DESCRIPTION
+  --------+--------------+------------------------------------------------
+  add     | -d, --date   | specify a date as YYYY-MM-DD, defaults to today
+          | -n, --notes  | add notes as a string, defaults to an empty one
+          | -a, --amount | set the amount of time, this option is required
   """
 
 config :timeline,
   projects_help: """
 
   Usage: timeline projects ACTION [OPTIONS]
-  Help:  timeline projects ACTION [-h | --help]
+  Help:  timeline projects ACTION
 
   ACTIONS | OPTIONS     | DESCRIPTION
   --------+-------------+----------------------------
