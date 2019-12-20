@@ -5,26 +5,35 @@ defmodule Entries.AddTest do
   import Timeline, only: [main: 1]
 
   describe "add entries with valid options" do
-    @cmd ~w(entries add cdl-praticanti:programming -a 8)
+    @cmd ~w[entries add foo:bar]
     test "displays the added entry with minimum set of options" do
-      assert capture_io(fn -> main(@cmd) end) =~ "\"task\":\"programming\""
+      assert capture_io(fn -> main(@cmd) end) =~ "\"task\":\"bar\""
     end
 
-    @cmd ~w(entries add cdl-praticanti:programming -n foo -a 4)
+    @cmd ~w[entries add foo:bar -n baz]
     test "displays the added entry with the notes option" do
-      assert capture_io(fn -> main(@cmd) end) =~ "\"notes\":\"foo\""
+      assert capture_io(fn -> main(@cmd) end) =~ "\"notes\":\"baz\""
     end
 
-    @cmd ~w(entries add cdl-praticanti:programming -e 10-10-10 -a 4)
+    @cmd ~w[entries add foo:bar -e baz]
     test "displays the added entry with the date option" do
-      assert capture_io(fn -> main(@cmd) end) =~ "\"executed_on\":\"10-10-10\""
+      assert capture_io(fn -> main(@cmd) end) =~ "\"executed_on\":\"baz\""
+    end
+
+    @cmd ~w[entries add foo:bar --amount=4]
+    test "displays the added entry with the amount option" do
+      assert capture_io(fn -> main(@cmd) end) =~ "\"amount\":4"
     end
   end
 
   describe "add entries with invalid options" do
-    @cmd ~w(entries add cdl-praticanti -a 8)
-
+    @cmd ~w[entries add foo -a 8]
     test "displays help when missing task" do
+      assert capture_io(fn -> main(@cmd) end) =~ "Usage"
+    end
+
+    @cmd ~w[entries add]
+    test "displays help when missing options" do
       assert capture_io(fn -> main(@cmd) end) =~ "Usage"
     end
   end
