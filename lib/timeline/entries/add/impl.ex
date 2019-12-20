@@ -1,4 +1,4 @@
-defmodule Timeline.Entries.Add.Conf do
+defmodule Timeline.Entries.Add.Impl do
   @opts [
     aliases: [a: :amount, e: :executed_on, n: :notes],
     strict: [amount: :integer, executed_on: :string, notes: :string]
@@ -9,7 +9,7 @@ defmodule Timeline.Entries.Add.Conf do
   @doc """
   ## Examples
 
-      iex> Timeline.Entries.Add.Conf.parse(~w[-a 8 -e foo -n bar foo:bar])
+      iex> Timeline.Entries.Add.Impl.parse(~w[-a 8 -e foo -n bar foo:bar])
       {[amount: 8, executed_on: "foo", notes: "bar"], ["foo:bar"], []}
 
   """
@@ -20,13 +20,13 @@ defmodule Timeline.Entries.Add.Conf do
   @doc """
   ## Examples
 
-      iex> Timeline.Entries.Add.Conf.overwrite_defaults([])
+      iex> Timeline.Entries.Add.Impl.overwrite_defaults([])
       [amount: :default, executed_on: :default, notes: :default]
 
-      iex> Timeline.Entries.Add.Conf.overwrite_defaults([amount: 8, notes: "foo"])
+      iex> Timeline.Entries.Add.Impl.overwrite_defaults([amount: 8, notes: "foo"])
       [executed_on: :default, amount: 8, notes: "foo"]
 
-      iex> Timeline.Entries.Add.Conf.overwrite_defaults([amount: 8, executed_on: "foo", notes: "bar"])
+      iex> Timeline.Entries.Add.Impl.overwrite_defaults([amount: 8, executed_on: "foo", notes: "bar"])
       [amount: 8, executed_on: "foo", notes: "bar"]
 
   """
@@ -39,13 +39,13 @@ defmodule Timeline.Entries.Add.Conf do
   @doc """
   ## Examples
 
-      iex> Timeline.Entries.Add.Conf.fill_defaults([amount: :default, executed_on: :default, notes: :default])
-      [amount: 8, executed_on: Timeline.Entries.Add.Conf.today(), notes: ""]
+      iex> Timeline.Entries.Add.Impl.fill_defaults([amount: :default, executed_on: :default, notes: :default])
+      [amount: 8, executed_on: Timeline.Entries.Add.Impl.today(), notes: ""]
 
-      iex> Timeline.Entries.Add.Conf.fill_defaults([executed_on: :default, amount: 8, notes: "foo"])
-      [executed_on: Timeline.Entries.Add.Conf.today(), amount: 8, notes: "foo"]
+      iex> Timeline.Entries.Add.Impl.fill_defaults([executed_on: :default, amount: 8, notes: "foo"])
+      [executed_on: Timeline.Entries.Add.Impl.today(), amount: 8, notes: "foo"]
 
-      iex> Timeline.Entries.Add.Conf.fill_defaults([amount: 8, executed_on: "foo", notes: "bar"])
+      iex> Timeline.Entries.Add.Impl.fill_defaults([amount: 8, executed_on: "foo", notes: "bar"])
       [amount: 8, executed_on: "foo", notes: "bar"]
 
   """
@@ -59,10 +59,10 @@ defmodule Timeline.Entries.Add.Conf do
   @doc """
   ## Examples
 
-      iex> Timeline.Entries.Add.Conf.split("foo:bar")
+      iex> Timeline.Entries.Add.Impl.split("foo:bar")
       [project: "foo", task: "bar"]
 
-      iex> Timeline.Entries.Add.Conf.split("foo:bar:baz")
+      iex> Timeline.Entries.Add.Impl.split("foo:bar:baz")
       [project: "foo", task: "bar:baz"]
   """
   def split(project_task) do

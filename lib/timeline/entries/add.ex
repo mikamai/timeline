@@ -1,5 +1,5 @@
 defmodule Timeline.Entries.Add do
-  alias Timeline.Entries.Add.Conf
+  alias Timeline.Entries.Add.Impl
 
   def run(argv) do
     argv
@@ -8,12 +8,12 @@ defmodule Timeline.Entries.Add do
   end
 
   def parse_argv(argv) do
-    case Conf.parse(argv) do
+    case Impl.parse(argv) do
       {_, [], _} ->
         :help
 
       {options, [project_task], []} ->
-        Conf.overwrite_defaults(options) ++ Conf.split(project_task)
+        Impl.overwrite_defaults(options) ++ Impl.split(project_task)
 
       _ ->
         :help
@@ -30,7 +30,7 @@ defmodule Timeline.Entries.Add do
 
   def process(options) do
     options
-    |> Conf.fill_defaults()
+    |> Impl.fill_defaults()
     |> to_json()
     |> IO.puts()
   end

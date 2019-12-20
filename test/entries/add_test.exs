@@ -1,5 +1,5 @@
 defmodule Entries.AddTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   import ExUnit.CaptureIO, only: [capture_io: 1]
   import Timeline, only: [main: 1]
