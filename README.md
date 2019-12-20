@@ -8,10 +8,10 @@ Work is in progress.
 
 ```
 # to develop:
-mix.deps.get
+mix deps.get
 
 # to try it out:
-mix.escript.build
+mix escript.build
 
 # then run:
 ./timeline
