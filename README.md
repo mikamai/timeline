@@ -1,21 +1,18 @@
 # Timeline
 
-**TODO: Add description**
+CLI for [Timetable](https://timetable.mikamai.com/).
+While waiting for the real one to be ready, the API is mocked in `lib/timeline/api/timetable_mock`.
+Work is in progress.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `timeline` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:timeline, "~> 0.1.0"}
-  ]
-end
 ```
+# to develop:
+mix.deps.get
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/timeline](https://hexdocs.pm/timeline).
+# to try it out:
+mix.escript.build
 
+# then run:
+./timeline
+```
