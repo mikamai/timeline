@@ -1,4 +1,4 @@
-defmodule TimetableApi do
+defmodule Timeline.API.Timetable do
   @moduledoc """
   Handles the requests to the API.
   """

@@ -1,4 +1,4 @@
-defmodule Formatter do
+defmodule Timeline.Utils.Formatter do
   @moduledoc """
   Handles the output layout of the fetched data.
   """

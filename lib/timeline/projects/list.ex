@@ -3,6 +3,8 @@ defmodule Timeline.Projects.List do
   Documentation for Timeline.Projects.List.
   """
 
+  alias Timeline.Utils.{Formatter, Helper}
+
   @options [
     aliases: [t: :tasks],
     strict: [tasks: :boolean]

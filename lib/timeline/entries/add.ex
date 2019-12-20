@@ -1,5 +1,6 @@
 defmodule Timeline.Entries.Add do
   alias Timeline.Entries.Add.Impl
+  alias Timeline.Utils.Helper
 
   def run(argv) do
     argv

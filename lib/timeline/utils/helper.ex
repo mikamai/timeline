@@ -1,5 +1,9 @@
-defmodule Helper do
-  @resources ~w(entries projects)
+defmodule Timeline.Utils.Helper do
+  @moduledoc """
+  Handles the output of help messages.
+  """
+
+  @resources ~w[entries projects]
 
   def get_resources do
     @resources

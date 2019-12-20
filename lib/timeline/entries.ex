@@ -4,6 +4,7 @@ defmodule Timeline.Entries do
   """
 
   alias Timeline.Entries.Add
+  alias Timeline.Utils.Helper
 
   def run(args) do
     [action | args] = args

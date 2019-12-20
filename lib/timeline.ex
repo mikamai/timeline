@@ -3,7 +3,8 @@ defmodule Timeline do
   Documentation for Timeline.
   """
 
-  import Helper
+  import Timeline.Utils.Helper
+
   @resources get_resources()
 
   def main([]) do

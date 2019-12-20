@@ -1,4 +1,4 @@
-defmodule TimetableMock do
+defmodule Timeline.API.TimetableMock do
   @moduledoc """
   Mocks the requests to the API.
   """
