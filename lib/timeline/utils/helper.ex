@@ -9,6 +9,13 @@ defmodule Timeline.Utils.Helper do
     @resources
   end
 
+  def display_help_for([resource, action]) when resource in @resources do
+    action_help = resource <> "_" <> action <> "_help"
+
+    Application.get_env(:timeline, String.to_atom(action_help))
+    |> IO.write()
+  end
+
   def display_help_for(resource) when resource in @resources do
     resource_help = resource <> "_help"
 

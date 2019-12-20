@@ -26,7 +26,7 @@ defmodule Timeline.Entries.Add do
   end
 
   def process(options) when length(options) < 5 do
-    IO.puts("Usage: timeline entries add <project>:<task> [OPTIONS]")
+    Helper.display_help_for(["entries", "add"])
   end
 
   def process(options) do

@@ -31,6 +31,13 @@ config :timeline,
   """
 
 config :timeline,
+  entries_add_help: """
+
+  Usage: timeline entries add <project>:<task> [OPTIONS]
+  Help:  timeline entries add
+  """
+
+config :timeline,
   projects_help: """
 
   Usage: timeline projects ACTION [OPTIONS]

@@ -28,13 +28,13 @@ defmodule Entries.AddTest do
 
   describe "add entries with invalid options" do
     @cmd ~w[entries add foo -a 8]
-    test "displays help when missing task" do
-      assert capture_io(fn -> main(@cmd) end) =~ "Usage"
+    test "displays action help when misused" do
+      assert capture_io(fn -> main(@cmd) end) =~ "<project>:<task>"
     end
 
     @cmd ~w[entries add]
-    test "displays help when missing options" do
-      assert capture_io(fn -> main(@cmd) end) =~ "Usage"
+    test "displays entries help when missing options" do
+      assert capture_io(fn -> main(@cmd) end) =~ "project:task"
     end
   end
 end
