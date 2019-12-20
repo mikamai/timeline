@@ -11,7 +11,7 @@ defmodule Projects.ListTest do
     revest
     """
 
-    @cmd ~w(projects list)
+    @cmd ~w[projects list]
     test "displays projects" do
       assert capture_io(fn -> main(@cmd) end) == @output
     end
@@ -30,12 +30,12 @@ defmodule Projects.ListTest do
       review
     """
 
-    @cmd ~w(projects list --tasks)
+    @cmd ~w[projects list --tasks]
     test "displays projects and tasks" do
       assert capture_io(fn -> main(@cmd) end) == @output
     end
 
-    @cmd ~w(projects list -t)
+    @cmd ~w[projects list -t]
     test "displays projects and tasks via shortcut" do
       assert capture_io(fn -> main(@cmd) end) == @output
     end
@@ -44,32 +44,32 @@ defmodule Projects.ListTest do
   describe "help message" do
     @help Application.get_env(:timeline, :projects_help)
 
-    @cmd ~w(projects list foo)
+    @cmd ~w[projects list foo]
     test "is called when passed invalid options" do
       assert capture_io(fn -> main(@cmd) end) == @help
     end
 
-    @cmd ~w(projects list --help)
+    @cmd ~w[projects list --help]
     test "is called via option" do
       assert capture_io(fn -> main(@cmd) end) == @help
     end
 
-    @cmd ~w(projects list -h)
+    @cmd ~w[projects list -h]
     test "is called via shortcut" do
       assert capture_io(fn -> main(@cmd) end) == @help
     end
 
-    @cmd ~w(projects list -h -t)
+    @cmd ~w[projects list -h -t]
     test "is called via mixed options" do
       assert capture_io(fn -> main(@cmd) end) == @help
     end
 
-    @cmd ~w(projects list -h foo)
+    @cmd ~w[projects list -h foo]
     test "is called via option and invalid arguments" do
       assert capture_io(fn -> main(@cmd) end) == @help
     end
 
-    @cmd ~w(projects list -t foo)
+    @cmd ~w[projects list -t foo]
     test "is called via tasks option and invalid arguments" do
       assert capture_io(fn -> main(@cmd) end) == @help
     end

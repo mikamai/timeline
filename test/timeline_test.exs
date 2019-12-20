@@ -12,7 +12,7 @@ defmodule TimelineTest do
     @help Application.get_env(:timeline, :main_help)
 
     test "displays help if args are not recognized" do
-      for args <- [~w(foo bar), ~w(foo entries), ~w(help foo)] do
+      for args <- [~w[foo bar], ~w[foo entries], ~w[help foo]] do
         assert capture_io(fn -> main(args) end) == @help
       end
     end
