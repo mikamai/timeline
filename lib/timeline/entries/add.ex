@@ -22,6 +22,9 @@ defmodule Timeline.Entries.Add do
       {[date: date, amount: amount], [project_task], []} ->
         [date, :default, amount] ++ split(project_task)
 
+      {[date: date, note: note, amount: amount], [project_task], []} ->
+        [date, note, amount] ++ split(project_task)
+
       # need a better :default handling
       # shortcut the processing of the date if matches Regex
       # generate as many body with different dates and process requests for each of them
@@ -49,8 +52,15 @@ defmodule Timeline.Entries.Add do
     |> IO.puts()
   end
 
-  def process(_) do
+  def process(:help) do
     Helper.display_help_for("entries")
+  end
+
+  def process(values) do
+    IO.inspect(values, label: "values")
+
+    # bodify(values)
+    # |> IO.puts()
   end
 
   defp split(project_task) do
