@@ -77,4 +77,10 @@ defmodule Timeline.Entries.Add.Impl do
   end
 
   def today, do: Date.utc_today() |> Date.to_string()
+
+  def to_json(options) do
+    options
+    |> Enum.into(%{})
+    |> Jason.encode!()
+  end
 end

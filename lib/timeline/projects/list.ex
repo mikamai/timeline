@@ -1,27 +1,17 @@
 defmodule Timeline.Projects.List do
-  @moduledoc """
-  Documentation for Timeline.Projects.List.
-  """
-
-  alias Timeline.Utils.{Formatter, Helper}
-
-  @options [
-    aliases: [t: :tasks],
-    strict: [tasks: :boolean]
-  ]
+  alias Timeline.Projects.List.Impl
+  alias Timeline.Utils.Helper
 
   @timetable_api Application.get_env(:timeline, :timetable_api)
 
-  def run(args) do
-    args
-    |> parse_args()
+  def run(argv) do
+    argv
+    |> parse_argv()
     |> process()
   end
 
-  def parse_args(args) do
-    parsed = OptionParser.parse(args, @options)
-
-    case parsed do
+  def parse_argv(argv) do
+    case Impl.parse(argv) do
       {[tasks: true], [], []} ->
         :tasks
 
@@ -35,29 +25,15 @@ defmodule Timeline.Projects.List do
 
   def process(:tasks) do
     @timetable_api.get("mikamai", "projects")
-    |> decode_response(:tasks)
+    |> Impl.decode_response(:tasks)
   end
 
   def process(:list) do
     @timetable_api.get("mikamai", "projects")
-    |> decode_response()
+    |> Impl.decode_response()
   end
 
   def process(_) do
     Helper.display_help_for("projects")
-  end
-
-  defp decode_response(response, option \\ nil)
-
-  defp decode_response({:ok, projects}, :tasks) do
-    Formatter.list(projects, :tasks)
-  end
-
-  defp decode_response({:ok, projects}, _) do
-    Formatter.list(projects)
-  end
-
-  defp decode_response({:error, details}, _) do
-    IO.puts("\nerror while fetching: `#{details}`")
   end
 end

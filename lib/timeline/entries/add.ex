@@ -32,13 +32,7 @@ defmodule Timeline.Entries.Add do
   def process(options) do
     options
     |> Impl.fill_defaults()
-    |> to_json()
+    |> Impl.to_json()
     |> IO.puts()
-  end
-
-  defp to_json(options) do
-    options
-    |> Enum.into(%{})
-    |> Jason.encode!()
   end
 end
