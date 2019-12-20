@@ -5,7 +5,6 @@ defmodule Entries.AddTest do
   import Timeline, only: [main: 1]
 
   describe "add entries with valid options" do
-
     @cmd ~w(entries add cdl-praticanti:programming -a 8)
     test "displays the added entry with minimum set of options" do
       assert capture_io(fn -> main(@cmd) end) =~ "\"task\":\"programming\""
@@ -16,7 +15,7 @@ defmodule Entries.AddTest do
       assert capture_io(fn -> main(@cmd) end) =~ "\"notes\":\"foo\""
     end
 
-    @cmd ~w(entries add cdl-praticanti:programming -d 10-10-10 -a 4)
+    @cmd ~w(entries add cdl-praticanti:programming -e 10-10-10 -a 4)
     test "displays the added entry with the date option" do
       assert capture_io(fn -> main(@cmd) end) =~ "\"executed_on\":\"10-10-10\""
     end

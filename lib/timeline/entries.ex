@@ -3,7 +3,7 @@ defmodule Timeline.Entries do
   Documentation for Entries.
   """
 
-  alias Timeline.Entries.{Add, List}
+  alias Timeline.Entries.Add
 
   def run(args) do
     [action | args] = args
@@ -14,9 +14,9 @@ defmodule Timeline.Entries do
     Add.run(args)
   end
 
-  defp dispatch_action(action, args) when action in ~w(ls list) do
-    List.run(args)
-  end
+  # defp dispatch_action(action, args) when action in ~w(ls list) do
+  #   List.run(args)
+  # end
 
   defp dispatch_action(_, _) do
     Helper.display_help_for("entries")
